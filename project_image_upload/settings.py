@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 from datetime import timedelta
 
@@ -24,12 +25,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-$m+)dqiuiw)8q*ayy+a&^1ebi+veiu++(--x!t*^2s=r^n0f2+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True # The user shouldnt see this. Set to False in production
+# When True, django acts like a media server. 
 
 ALLOWED_HOSTS = []
 
 
 # Application definition
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -41,7 +46,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt.token_blacklist',
     'corsheaders',
     'rest_framework',
-    'app_image_upload',
+    'app_image_upload', # This was added
 ]
 
 MIDDLEWARE = [
